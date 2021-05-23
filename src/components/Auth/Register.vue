@@ -21,7 +21,7 @@
         <v-text-field
           outlined
           label="Username"
-          v-model="userData.username"
+          v-model="userData.phone"
         ></v-text-field>
 
         <v-text-field
@@ -47,21 +47,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data () {
     return {
       userData: {
-        name: "Isaac",
-        email: "isaks@soma.com",
-        password: "password",
-        username: "ZakR",
+        name: "",
+        email: "",
+        password: "",
+        phone: "",
       }
     }
   },
 
   methods: {
     register () {
-      
+      axios.post('http://localhost:3335/auth/register', this.userData)
+      .then(response => response.data)
+      .then(data => {
+        if(data.status){
+          this.$router.push({name: 'Dashboard'});
+        }
+        console.log('Registered:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
   }
 }

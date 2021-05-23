@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   data(){
@@ -51,17 +52,11 @@ export default {
       let data = {};
       data.email = this.email;
       data.password = this.password
-      fetch('http://localhost:3335/auth/login', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json(data))
+      axios.post(`${process.env.BASE_URL}/auth/login`, data)
+      .then(response => response.data)
       .then(data => {
         if(data.status){
-          this.$router.push({name: 'dashboard'});
+          this.$router.push({name: 'Dashboard'});
         }
         console.log('Success:', data);
       })
