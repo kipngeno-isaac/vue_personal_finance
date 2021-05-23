@@ -5,8 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/auth',
-    name: 'AuthLayout',
+    path: '/auth/',
     component: () => import('@/views/layouts/Authentication'),
     children: [
       {
@@ -23,12 +22,11 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Dashboard',
     component: () => import('@/views/layouts/Application'),
     children: [
       {
-        path: '/',
-        name: 'dashboard',
+        path: '',
+        name: 'Dashboard',
         component: () => import('@/components/App/Dashboard')
       },
       {

@@ -2,7 +2,7 @@
   <div class="app--full-height">
     <div class="app--main-content">
     <v-app-bar
-      color="deep-purple"
+      color="blue"
       dark
     >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
@@ -43,24 +43,14 @@
         <router-view />
       </v-container>
     </div>
-    <v-fab-transition>
-              <v-btn
-                v-show="!hidden"
-                color="pink"
-                dark
-                absolute
-                bottom
-                right
-                fab
-              >
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-            </v-fab-transition>
+    <expense-modal/>
   </div>
 </template>
 
 <script>
+import ExpenseModal from '@/components/ExpenseModal'
 export default {
+  components: {ExpenseModal},
  data: () => ({
       drawer: false,
       group: null,
